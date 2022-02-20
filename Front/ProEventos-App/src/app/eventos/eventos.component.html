@@ -1,7 +1,36 @@
-<p>eventos works!</p>
-
-<div style="margin-bottom: 3px;" class="card" *ngFor="let evento of eventos">
-  <p>Tema: {{evento.tema}}</p>
-  <p>Local: {{evento.local}}</p>
-  <p>Data: {{evento.dataEvento}}</p>
+<h3>Eventos</h3>
+<hr />
+<form action="" class="form-inline">
+  <div class="form-group mb-2">
+    <input type="text" class="form-control mr-2" placeholder="Buscar">
+    <button class="btn btn-outline-success">Buscar</button>
+  </div>
+</form>
+<div class="table-responsive">
+  <table class="table table-stripped table-hover table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th>#</th>
+        <th>Imagem</th>
+        <th>Tema</th>
+        <th>Local</th>
+        <th>Data</th>
+        <th class="text-center">Participantes</th>
+        <th class="text-center">Lote</th>
+        <th>Opções</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let evento of eventos">
+        <td>{{evento.eventoId}}</td>
+        <td></td>
+        <td>{{evento.tema}}</td>
+        <td>{{evento.local}}</td>
+        <td>{{evento.dataEvento}}</td>
+        <td class="text-center">{{evento.qtdPessoas}}</td>
+        <td class="text-center">{{evento.lote}}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
