@@ -7,30 +7,44 @@
   </div>
 </form>
 <div class="table-responsive">
-  <table class="table table-stripped table-hover table-bordered">
+  <table class="table table-stripped table-hover">
     <thead class="thead-dark">
       <tr>
-        <th>#</th>
-        <th>Imagem</th>
-        <th>Tema</th>
-        <th>Local</th>
-        <th>Data</th>
-        <th class="text-center">Participantes</th>
-        <th class="text-center">Lote</th>
-        <th>Opções</th>
+        <th class="align-middle">
+          <button (click)="isHidden=!isHidden" class="btn btn-outline-light btn-sm">{{!isHidden ? "Exibir" :
+            "Ocultar"}}</button>
+        </th>
+        <th class="text-center align-middle">#</th>
+        <th class="align-middle">Tema</th>
+        <th class="align-middle">Local</th>
+        <th class="align-middle">Data</th>
+        <th class="text-center align-middle">Participantes</th>
+        <th class="text-center align-middle">Lote</th>
+        <th class="text-center align-middle">Opções</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="eventos && eventos.length">
       <tr *ngFor="let evento of eventos">
-        <td>{{evento.eventoId}}</td>
-        <td></td>
-        <td>{{evento.tema}}</td>
-        <td>{{evento.local}}</td>
-        <td>{{evento.dataEvento}}</td>
-        <td class="text-center">{{evento.qtdPessoas}}</td>
-        <td class="text-center">{{evento.lote}}</td>
+        <td class="align-middle">
+          <img [collapse]="!isHidden" [isAnimated]="true" src="assets/{{evento.imagemURL}}" [style.width.px]="widthImg"
+            [style.margin.px]="marginImg" alt="{{evento.tema}}">
+          <span [style.margin.px]="marginImg" [collapse]="isHidden" [isAnimated]="true" style="font-weight: bolder;">Imagem</span>
+        </td>
+        <td class="text-center align-middle">{{evento.eventoId}}</td>
+        <td class="align-middle">{{evento.tema}}</td>
+        <td class="align-middle">{{evento.local}}</td>
+        <td class="align-middle">{{evento.dataEvento}}</td>
+        <td class="text-center align-middle">{{evento.qtdPessoas}}</td>
+        <td class="text-center align-middle">{{evento.lote}}</td>
         <td></td>
       </tr>
     </tbody>
+    <tfoot *ngIf="!eventos.length" class="tfoot-dark">
+      <tr>
+        <td colspan="8" class="text-center">
+          <h3>Nenhum Evento Encontrado!</h3>
+        </td>
+      </tr>
+    </tfoot>
   </table>
 </div>
