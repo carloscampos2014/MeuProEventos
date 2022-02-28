@@ -1,11 +1,14 @@
 <h3>Eventos</h3>
 <hr />
-<form action="" class="form-inline">
+<div class="form-inline">
   <div class="form-group mb-2">
-    <input type="text" class="form-control mr-2" placeholder="Buscar">
-    <button class="btn btn-outline-success">Buscar</button>
+    <label class="form-label mr-2">Filtro: </label>
+    <input type="text" class="form-control mr-2" placeholder="Buscar" [(ngModel)]="filtroLista">
   </div>
-</form>
+</div>
+<div [hidden]="!filtroLista">
+  <h5>Filtro: {{filtroLista}}</h5>
+</div>
 <div class="table-responsive">
   <table class="table table-stripped table-hover">
     <thead class="thead-dark">
@@ -28,7 +31,8 @@
         <td class="align-middle">
           <img [collapse]="!isHidden" [isAnimated]="true" src="assets/{{evento.imagemURL}}" [style.width.px]="widthImg"
             [style.margin.px]="marginImg" alt="{{evento.tema}}">
-          <span [style.margin.px]="marginImg" [collapse]="isHidden" [isAnimated]="true" style="font-weight: bolder;">Imagem</span>
+          <span [style.margin.px]="marginImg" [collapse]="isHidden" [isAnimated]="true"
+            style="font-weight: bolder;">Imagem</span>
         </td>
         <td class="text-center align-middle">{{evento.eventoId}}</td>
         <td class="align-middle">{{evento.tema}}</td>
@@ -36,7 +40,10 @@
         <td class="align-middle">{{evento.dataEvento}}</td>
         <td class="text-center align-middle">{{evento.qtdPessoas}}</td>
         <td class="text-center align-middle">{{evento.lote}}</td>
-        <td></td>
+        <td class="text-center align-middle">
+          <button type="button" class="btn btn-primary btn-sm mr-2">Editar</button>
+          <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+        </td>
       </tr>
     </tbody>
     <tfoot *ngIf="!eventos.length" class="tfoot-dark">
